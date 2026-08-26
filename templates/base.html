@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Share Your Dialect{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal-deep:#173F3A; --teal-mid:#2C6159;
+    --sand:#F3ECDA; --sand-card:#FBF7EC;
+    --copper:#B9743C; --copper-deep:#8F5527;
+    --ink:#23201B; --ink-soft:#5A5347;
+    --pos:#3E7D5E; --neg:#B4483A; --neu:#8C7E56;
+    --line:#DCD0AF;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:'Inter',sans-serif; color:var(--ink);
+    background:var(--sand); direction:ltr;
+  }
+  .review-banner{
+    background:#7A3B1E; color:#FCEFE2; text-align:center; font-size:12.5px;
+    font-weight:700; padding:8px 14px; letter-spacing:.02em;
+  }
+  .wrap{ max-width:680px; margin:0 auto; padding:28px 20px 48px; }
+  .header{ text-align:center; margin-bottom:6px; }
+  .eyebrow{ font-size:12.5px; letter-spacing:.12em; color:var(--copper-deep); font-weight:800; text-transform:uppercase; }
+  h1{ font-family:'Playfair Display',serif; font-size:32px; margin:6px 0 2px; color:var(--teal-deep); font-weight:700; }
+  .sub{ font-size:14.5px; color:var(--ink-soft); margin:0 0 14px; line-height:1.7; }
+  .divider{ width:100%; height:22px; margin:10px 0 20px; display:block; }
+  .card{ background:var(--sand-card); border:1px solid var(--line); border-radius:16px; padding:18px 18px 20px; margin-bottom:14px; }
+  a{ color:var(--teal-mid); }
+  button{ font-family:inherit; }
+</style>
+{% block extra_head %}{% endblock %}
+</head>
+<body>
+<div class="review-banner">🔎 SUPERVISOR REVIEW COPY — English UI &amp; questions, for content verification only. Not used for live data collection.</div>
+<div class="wrap">
+  <div class="header">
+    <div class="eyebrow">Academic Research Project &middot; Omani Dialect Sentiment</div>
+    <h1>{% block h1 %}Share Your Dialect{% endblock %}</h1>
+    <p class="sub">{% block sub %}{% endblock %}</p>
+  </div>
+  <svg class="divider" viewBox="0 0 640 22" preserveAspectRatio="none">
+    <line x1="0" y1="11" x2="640" y2="11" stroke="#DCD0AF" stroke-width="1"/>
+    <g fill="#B9743C">
+      <polygon points="0,11 8,4 16,11 8,18"/><polygon points="40,11 48,4 56,11 48,18"/>
+      <polygon points="80,11 88,4 96,11 88,18"/><polygon points="560,11 568,4 576,11 568,18"/>
+      <polygon points="600,11 608,4 616,11 608,18"/><polygon points="624,11 632,4 640,11 632,18"/>
+    </g>
+    <g fill="#173F3A"><circle cx="320" cy="11" r="5"/><circle cx="296" cy="11" r="2.5"/><circle cx="344" cy="11" r="2.5"/></g>
+  </svg>
+  {% block content %}{% endblock %}
+</div>
+</body>
+</html>

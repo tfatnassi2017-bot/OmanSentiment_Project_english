@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Researcher Dashboard - Login{% endblock %}
+{% block h1 %}Researcher Dashboard{% endblock %}
+{% block sub %}Login restricted to the researcher only.{% endblock %}
+
+{% block extra_head %}
+<style>
+  form{ display:flex; flex-direction:column; gap:12px; }
+  input[type=password]{
+    border:1.5px solid var(--line); border-radius:10px; padding:12px 14px;
+    font-size:15px; font-family:'Inter',sans-serif; direction:ltr; text-align:left;
+  }
+  input[type=password]:focus{ outline:2px solid var(--teal-mid); border-color:var(--teal-mid); }
+  button{
+    background:var(--teal-deep); color:#fff; border:none; padding:12px; border-radius:10px;
+    font-size:15px; font-weight:800; cursor:pointer;
+  }
+  button:hover{ background:var(--teal-mid); }
+  .error{ color:var(--neg); font-size:13px; text-align:center; font-weight:700; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <form method="POST">
+    <input type="password" name="password" placeholder="Password" autofocus required>
+    <button type="submit">Log in</button>
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+  </form>
+</div>
+{% endblock %}
