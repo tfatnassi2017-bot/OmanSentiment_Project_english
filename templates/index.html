@@ -3,14 +3,11 @@
 
 {% block extra_head %}
 <style>
-  .consent{
-    background:var(--teal-deep); color:#EFE7D0; border-radius:14px; padding:14px 16px;
-    font-size:13px; line-height:1.9; margin-bottom:18px;
-  }
-  .consent b{ color:#fff; }
   .topic-row{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
-  .topic-label{ font-size:12px; color:var(--copper-deep); font-weight:800; margin-bottom:6px; }
+  .topic-label{ font-size:12px; color:var(--copper-deep); font-weight:800; margin-bottom:2px; }
+  .topic-label-ar{ font-size:12px; color:var(--copper-deep); font-weight:700; margin-bottom:6px; opacity:.8; font-family:'Tajawal',sans-serif;}
   .prompt{ font-size:19px; font-weight:700; color:var(--teal-deep); line-height:1.6; }
+  .prompt-ar{ font-size:16px; font-weight:600; color:var(--teal-mid); line-height:1.7; margin-top:4px; opacity:.85; font-family:'Tajawal',sans-serif;}
   .shuffle{
     flex:0 0 auto; background:none; border:1px solid var(--line); color:var(--teal-mid);
     border-radius:10px; padding:8px 10px; font-size:12.5px; cursor:pointer; white-space:nowrap;
@@ -23,14 +20,16 @@
   }
   textarea:focus{ outline:2px solid var(--teal-mid); outline-offset:1px; border-color:var(--teal-mid); }
   .count{ font-size:11.5px; color:var(--ink-soft); text-align:right; margin-top:4px; }
-  .sent-label{ font-size:13px; color:var(--ink-soft); margin:16px 0 8px; font-weight:700; }
+  .sent-label{ font-size:13px; color:var(--ink-soft); margin:16px 0 2px; font-weight:700; }
+  .sent-label-ar{ font-size:12.5px; color:var(--ink-soft); margin:0 0 8px; font-weight:600; opacity:.8; direction:rtl; font-family:'Tajawal',sans-serif;}
   .sent-row{ display:flex; gap:8px; }
   .sent-btn{
-    flex:1; border-radius:12px; padding:12px 6px; font-size:14.5px; font-weight:700; cursor:pointer;
+    flex:1; border-radius:12px; padding:10px 6px; font-size:14px; font-weight:700; cursor:pointer;
     border:1.5px solid var(--line); background:#fff; color:var(--ink-soft);
-    display:flex; flex-direction:column; align-items:center; gap:4px;
+    display:flex; flex-direction:column; align-items:center; gap:2px;
   }
-  .sent-btn .emo{ font-size:20px; }
+  .sent-btn .emo{ font-size:20px; margin-bottom:2px; }
+  .sent-btn .btn-ar{ font-size:11.5px; font-weight:600; opacity:.75; direction:rtl; font-family:'Tajawal',sans-serif;}
   .sent-btn.active-pos{ background:#E7F3EA; border-color:var(--pos); color:var(--pos); }
   .sent-btn.active-neg{ background:#FBEAE7; border-color:var(--neg); color:var(--neg); }
   .sent-btn.active-neu{ background:#F2EEDF; border-color:var(--neu); color:var(--neu); }
@@ -40,27 +39,33 @@
   }
   .submit:disabled{ background:#D8C9AC; cursor:not-allowed; }
   .submit:not(:disabled):hover{ background:var(--copper-deep); }
-  .msg{ text-align:center; font-size:13.5px; margin-top:10px; min-height:18px; }
+  .msg{ text-align:center; font-size:13px; margin-top:10px; min-height:18px; }
   .msg.ok{ color:var(--pos); font-weight:700; }
   .msg.err{ color:var(--neg); font-weight:700; }
   .footer{ margin-top:20px; padding-top:16px; border-top:1px dashed var(--line); text-align:center; }
   .stat{ font-size:13px; color:var(--ink-soft); }
   .stat b{ color:var(--teal-deep); font-size:16px; }
+  .stat-ar{ font-size:12px; color:var(--ink-soft); opacity:.8; margin-top:2px; direction:rtl; font-family:'Tajawal',sans-serif;}
   .done-box{ display:none; text-align:center; padding:20px 10px; }
   .done-box .big-emoji{ font-size:44px; margin-bottom:10px; }
-  .done-box h3{ color:var(--teal-deep); font-size:20px; margin-bottom:10px; }
+  .done-box h3{ color:var(--teal-deep); font-size:20px; margin-bottom:4px; }
+  .done-box h3.ar{ font-size:17px; margin-bottom:10px; direction:rtl; opacity:.85; font-family:'Tajawal',sans-serif;}
   .done-box p{ font-size:14px; color:var(--ink-soft); line-height:1.8; max-width:420px; margin:0 auto; }
+  .done-box p.ar{ direction:rtl; margin-top:8px; opacity:.85; font-family:'Tajawal',sans-serif;}
 
   .consent-gate{
     background:var(--sand-card); border:1.5px solid var(--line); border-radius:16px;
     padding:20px 20px 22px; margin-bottom:18px;
   }
-  .consent-gate h2{ color:var(--teal-deep); font-size:18px; margin-bottom:10px; }
-  .consent-gate .section-label{ font-weight:800; color:var(--copper-deep); font-size:13px; margin:14px 0 4px; }
-  .consent-gate p{ font-size:13.5px; line-height:1.9; color:var(--ink); margin:0; }
+  .consent-gate h2{ color:var(--teal-deep); font-size:18px; margin-bottom:2px; }
+  .consent-gate h2.ar{ font-size:16px; margin-bottom:10px; direction:rtl; opacity:.8; font-weight:700; font-family:'Tajawal',sans-serif;}
+  .consent-gate .section-label{ font-weight:800; color:var(--copper-deep); font-size:13px; margin:14px 0 1px; }
+  .consent-gate .section-label-ar{ font-weight:700; color:var(--copper-deep); font-size:12.5px; margin:0 0 4px; opacity:.8; direction:rtl; font-family:'Tajawal',sans-serif;}
+  .consent-gate p{ font-size:13.5px; line-height:1.85; color:var(--ink); margin:0; }
+  .consent-gate p.ar{ font-size:13px; line-height:1.9; color:var(--ink-soft); margin-top:4px; direction:rtl; opacity:.85; font-family:'Tajawal',sans-serif;}
   .region-select{
     width:100%; margin-top:6px; padding:11px 12px; border:1.5px solid var(--line);
-    border-radius:10px; font-family:'Inter',sans-serif; font-size:14.5px; color:var(--ink);
+    border-radius:10px; font-family:'Inter',sans-serif; font-size:14px; color:var(--ink);
     background:#fff; direction:ltr;
   }
   .region-select:focus{ outline:2px solid var(--teal-mid); border-color:var(--teal-mid); }
@@ -70,6 +75,7 @@
   }
   .agree-row input[type=checkbox]{ width:18px; height:18px; margin-top:2px; flex:0 0 auto; cursor:pointer; }
   .agree-row label{ font-size:13.5px; color:var(--ink); line-height:1.7; cursor:pointer; }
+  .agree-row .ar{ display:block; font-size:12.5px; color:var(--ink-soft); direction:rtl; margin-top:3px; opacity:.85; font-family:'Tajawal',sans-serif;}
   .start-btn{
     width:100%; margin-top:14px; background:var(--copper); color:#fff; border:none;
     padding:14px; border-radius:12px; font-size:16px; font-weight:800; cursor:pointer;
@@ -83,47 +89,72 @@
 {% block content %}
 <div class="consent-gate" id="consentGate">
   <h2>Before you begin — Consent Statement</h2>
+  <h2 class="ar">قبل ما تبدأ — بيان الموافقة على المشاركة</h2>
 
   <div class="section-label">Purpose of the study</div>
+  <div class="section-label-ar">الغرض من الدراسة</div>
   <p>
     This application is part of an academic research project (PhD dissertation) that aims to build the first
     open dataset of real sentences in the Omani dialect, tagged with sentiment (positive / neutral / negative),
     to develop text-analysis tools that understand the Omani dialect.
   </p>
+  <p class="ar">
+    هذا التطبيق جزء من مشروع بحثي أكاديمي (رسالة دكتوراه) يهدف لبناء أول قاعدة بيانات مفتوحة لجمل حقيقية
+    باللهجة العُمانية مع تصنيف مشاعرها (إيجابي / محايد / سلبي)، لتطوير أدوات تحليل نصوص تفهم اللهجة العُمانية.
+  </p>
 
   <div class="section-label">Data we collect</div>
+  <div class="section-label-ar">البيانات اللي نجمعها</div>
   <p>
     The sentence you write, the sentiment label you choose, and the region you select below.
     We do not ask for your name, phone number, email, or any personally identifying information.
   </p>
+  <p class="ar">
+    الجملة اللي تكتبها بلهجتك، تصنيف الشعور اللي تختاره، والمحافظة اللي تختارها أدناه.
+    ما نطلب اسمك، رقم هاتفك، بريدك الإلكتروني، أو أي معلومة تعرّف فيك شخصياً.
+  </p>
 
   <div class="section-label">How your data is used</div>
+  <div class="section-label-ar">كيف تُستخدم بياناتك</div>
   <p>
     Data is fully anonymized, used for academic analysis, and may be published as part of an open
     research dataset for other researchers to use.
   </p>
+  <p class="ar">
+    البيانات مجهولة المصدر بالكامل، تُستخدم في التحليل الأكاديمي، وقد تُنشر كجزء من قاعدة بيانات بحثية
+    مفتوحة يستفيد منها باحثون آخرون.
+  </p>
 
   <div class="section-label">Your right to withdraw</div>
+  <div class="section-label-ar">حقك في الانسحاب</div>
   <p>
     Participation is entirely voluntary, and you have the right to stop participating at any time without
     obligation. Since data is anonymous from the start, we cannot delete a specific submission after it's
     sent, because there is no way to link it back to you.
   </p>
+  <p class="ar">
+    المشاركة اختيارية بالكامل، ولك الحق تتوقف عن المشاركة بأي وقت بدون أي التزام. بما إن البيانات
+    مجهولة المصدر من البداية، ما نقدر نحذف مساهمة معينة بعد إرسالها لأنه ما فيه أي طريقة نربطها فيك.
+  </p>
 
   <div class="section-label">Region</div>
+  <div class="section-label-ar">المحافظة</div>
   <select class="region-select" id="regionSelect">
-    <option value="" disabled selected>-- Select your region --</option>
-    {% for key, label in regions %}
-    <option value="{{ key }}">{{ label }}</option>
+    <option value="" disabled selected>-- Select your region / اختر محافظتك --</option>
+    {% for key, label_en, label_ar in regions %}
+    <option value="{{ key }}">{{ label_en }} — {{ label_ar }}</option>
     {% endfor %}
   </select>
 
   <div class="agree-row">
     <input type="checkbox" id="agreeCheckbox">
-    <label for="agreeCheckbox">I agree to participate voluntarily under the terms described above.</label>
+    <label for="agreeCheckbox">
+      I agree to participate voluntarily under the terms described above.
+      <span class="ar">أوافق على المشاركة طوعياً وفق الشروط الموضحة أعلاه.</span>
+    </label>
   </div>
 
-  <button class="start-btn" id="startBtn" type="button" disabled>Start Participating</button>
+  <button class="start-btn" id="startBtn" type="button" disabled>Start Participating / ابدأ المشاركة</button>
   <div class="gate-err" id="gateErr"></div>
 </div>
 
@@ -132,37 +163,52 @@
     <div class="topic-row">
       <div>
         <div class="topic-label" id="topicLabel">Topic</div>
+        <div class="topic-label-ar" id="topicLabelAr" dir="rtl">الموضوع</div>
         <div class="prompt" id="promptText">Loading...</div>
+        <div class="prompt-ar" id="promptTextAr" dir="rtl">...جاري التحميل</div>
       </div>
-      <button class="shuffle" id="shuffleBtn" type="button">🔄 Change Topic</button>
+      <button class="shuffle" id="shuffleBtn" type="button">🔄 Change / تغيير</button>
     </div>
 
-    <textarea id="sentenceInput" maxlength="240" placeholder="Write a sentence or two in Omani dialect here..."></textarea>
+    <textarea id="sentenceInput" maxlength="240" placeholder="Write a sentence in Omani dialect here... / اكتب جملة بلهجتك العمانية هنا..."></textarea>
     <div class="count"><span id="charCount">0</span>/240</div>
 
     <div class="sent-label">What sentiment does your answer reflect toward the topic?</div>
+    <div class="sent-label-ar" dir="rtl">ما الشعور الذي تعكسه إجابتك تجاه موضوع السؤال؟</div>
     <div class="sent-row">
-      <button class="sent-btn" data-val="positive" type="button"><span class="emo">😊</span>Positive</button>
-      <button class="sent-btn" data-val="neutral" type="button"><span class="emo">😐</span>Neutral</button>
-      <button class="sent-btn" data-val="negative" type="button"><span class="emo">😞</span>Negative</button>
+      <button class="sent-btn" data-val="positive" type="button">
+        <span class="emo">😊</span><span>Positive</span><span class="btn-ar" dir="rtl">إيجابي</span>
+      </button>
+      <button class="sent-btn" data-val="neutral" type="button">
+        <span class="emo">😐</span><span>Neutral</span><span class="btn-ar" dir="rtl">محايد</span>
+      </button>
+      <button class="sent-btn" data-val="negative" type="button">
+        <span class="emo">😞</span><span>Negative</span><span class="btn-ar" dir="rtl">سلبي</span>
+      </button>
     </div>
 
-    <button class="submit" id="submitBtn" type="button">Submit Sentence</button>
+    <button class="submit" id="submitBtn" type="button">Submit Sentence / إرسال الجملة</button>
     <div class="msg" id="msgBox"></div>
   </div>
 
   <div class="done-box" id="doneBox">
     <div class="big-emoji">🎉</div>
     <h3>Thank you, you've answered all the questions!</h3>
+    <h3 class="ar" dir="rtl">شكراً لك، أجبت على جميع الأسئلة!</h3>
     <p>
       Your contribution has arrived and is greatly appreciated. If you'd like to help more, share the link
       with friends — every new voice makes a real difference to this research.
+    </p>
+    <p class="ar" dir="rtl">
+      مساهمتك وصلت وتُقدّر وايد. لو حبيت تساعدنا أكثر، شارك الرابط مع أصحابك —
+      كل صوت جديد يفرق وايد في هذا البحث.
     </p>
   </div>
 </div>
 
 <div class="footer">
   <div class="stat">Total contributions so far: <b id="totalCount">—</b></div>
+  <div class="stat-ar">إجمالي المساهمات حتى الآن</div>
 </div>
 
 <script>
@@ -172,7 +218,9 @@ let currentTopic = null;
 let selectedSentiment = null;
 
 const promptText = document.getElementById('promptText');
+const promptTextAr = document.getElementById('promptTextAr');
 const topicLabel = document.getElementById('topicLabel');
+const topicLabelAr = document.getElementById('topicLabelAr');
 const sentenceInput = document.getElementById('sentenceInput');
 const charCount = document.getElementById('charCount');
 const submitBtn = document.getElementById('submitBtn');
@@ -192,11 +240,11 @@ const gateErr = document.getElementById('gateErr');
 // Asked once per device, then remembered in localStorage so returning
 // visitors go straight to the questions (participation isn't limited to
 // a single submission — this only gates the one-time consent step).
-// NOTE: uses a separate localStorage namespace ("_en_review") from the
-// production Arabic app, so testing this review copy on the same browser
-// never interferes with a real participant's consent/progress state.
-const CONSENT_KEY = 'omani_consent_given_v1_en_review';
-const REGION_KEY = 'omani_participant_region_v1_en_review';
+// NOTE: uses a separate localStorage namespace ("_bilingual_review") from
+// both the production Arabic app and the English-only review copy, so
+// testing any of them on the same browser never interferes with another.
+const CONSENT_KEY = 'omani_consent_given_v1_bilingual_review';
+const REGION_KEY = 'omani_participant_region_v1_bilingual_review';
 
 function getStoredRegion(){
   const r = localStorage.getItem(REGION_KEY);
@@ -219,7 +267,7 @@ agreeCheckbox.addEventListener('change', updateStartBtn);
 
 startBtn.addEventListener('click', () => {
   if (!agreeCheckbox.checked || !regionSelect.value) {
-    gateErr.textContent = 'Please select a region and agree to the terms first.';
+    gateErr.textContent = 'Please select a region and agree to the terms first. / الرجاء اختيار المحافظة والموافقة أولاً.';
     return;
   }
   gateErr.textContent = '';
@@ -229,10 +277,7 @@ startBtn.addEventListener('click', () => {
 });
 
 // --- Answered-topic tracking (unchanged from production app) ----------
-// Which topics this browser has already answered, kept in localStorage so
-// it survives page reloads/closing the tab (but is local to this device —
-// it's not tied to a person, just "this browser has seen these prompts").
-const STORAGE_KEY = 'omani_answered_topics_v1_en_review';
+const STORAGE_KEY = 'omani_answered_topics_v1_bilingual_review';
 
 function getAnswered(){
   try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')); }
@@ -243,9 +288,6 @@ function saveAnswered(set){
 }
 let answered = getAnswered();
 
-// Computed against the CURRENT topics list every time, so if new questions
-// are added to app.py later, someone who already finished the old set will
-// automatically see the new ones instead of staying stuck on "completed".
 function remainingTopics(){
   return topics.filter(t => !answered.has(t[0]));
 }
@@ -255,13 +297,16 @@ function showDone(){
   doneBox.style.display = 'block';
 }
 
+// Each topic tuple is now (key, label_en, prompt_en, label_ar, prompt_ar)
 function pickTopic(){
   const remaining = remainingTopics();
   if (remaining.length === 0) { showDone(); return; }
   const t = remaining[Math.floor(Math.random() * remaining.length)];
   currentTopic = t;
   topicLabel.textContent = 'Topic: ' + t[1];
+  topicLabelAr.textContent = 'الموضوع: ' + t[3];
   promptText.textContent = t[2];
+  promptTextAr.textContent = t[4];
 }
 document.getElementById('shuffleBtn').addEventListener('click', pickTopic);
 
@@ -289,20 +334,18 @@ submitBtn.addEventListener('click', async () => {
   msgBox.className = 'msg'; msgBox.textContent = '';
 
   if (sentence.length < 6) {
-    msgBox.className = 'msg err'; msgBox.textContent = 'Please write a slightly longer sentence.'; return;
+    msgBox.className = 'msg err'; msgBox.textContent = 'Please write a slightly longer sentence. / اكتب جملة أطول شوي.'; return;
   }
   if (!selectedSentiment) {
-    msgBox.className = 'msg err'; msgBox.textContent = 'Select the sentiment of your answer before submitting.'; return;
+    msgBox.className = 'msg err'; msgBox.textContent = 'Select the sentiment before submitting. / اختر الشعور قبل الإرسال.'; return;
   }
 
   const participantRegion = getStoredRegion();
   if (!participantRegion) {
-    // Shouldn't normally happen (gate enforces this first), but guards
-    // against a cleared/corrupted localStorage mid-session.
-    msgBox.className = 'msg err'; msgBox.textContent = 'Something went wrong with your consent info — please reload the page.'; return;
+    msgBox.className = 'msg err'; msgBox.textContent = 'Consent info error — please reload the page. / أعد تحميل الصفحة.'; return;
   }
 
-  submitBtn.disabled = true; submitBtn.textContent = 'Submitting...';
+  submitBtn.disabled = true; submitBtn.textContent = 'Submitting... / جاري الإرسال...';
   try {
     const res = await fetch('/submit', {
       method: 'POST',
@@ -314,7 +357,7 @@ submitBtn.addEventListener('click', async () => {
     });
     const data = await res.json();
     if (data.ok) {
-      msgBox.className = 'msg ok'; msgBox.textContent = 'Received! Thank you for your contribution 🙏';
+      msgBox.className = 'msg ok'; msgBox.textContent = 'Received! Thank you 🙏 / وصلت! شكراً لك';
       sentenceInput.value = ''; charCount.textContent = '0';
       selectedSentiment = null;
       sentBtns.forEach(b => b.className = 'sent-btn');
@@ -324,9 +367,6 @@ submitBtn.addEventListener('click', async () => {
       saveAnswered(answered);
 
       if (remainingTopics().length === 0) {
-        // Let them see the "thank you" confirmation for a moment before
-        // switching to the full completion screen, rather than cutting
-        // straight to it.
         setTimeout(showDone, 1100);
       } else {
         pickTopic();
@@ -337,7 +377,7 @@ submitBtn.addEventListener('click', async () => {
   } catch(e){
     msgBox.className = 'msg err'; msgBox.textContent = 'Could not reach the server, please try again.';
   } finally {
-    submitBtn.disabled = false; submitBtn.textContent = 'Submit Sentence';
+    submitBtn.disabled = false; submitBtn.textContent = 'Submit Sentence / إرسال الجملة';
   }
 });
 
